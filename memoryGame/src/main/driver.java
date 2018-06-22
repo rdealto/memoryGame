@@ -89,14 +89,11 @@ public class driver {
 		}
 		
 		ArrayList<String> last = new ArrayList<String>();
-		last.add("Johnson");
-		last.add("Smith");
-		last.add("Lixen");
-		last.add("Rockford");
-		last.add("Vaden");
-		last.add("Tamelson");
-		last.add("Alken");
-		last.add("Barken");
+		String filename1 = "src/main/lastNames.txt";
+		for(String line : Files.readAllLines(Paths.get(filename1))) {
+			String[] data = line.split(" ");
+			last.add(data[1]);
+		}
 		
 		profile one = makePerson(colors, makes, first, last);
 		profile two = makePerson(colors, makes, first, last);
@@ -248,17 +245,17 @@ public class driver {
 			button2.setText(two.name);
 			button3.setText(three.name);
 		} else if(n%4==1) {
-			button1.setText(one.plate);
-			button2.setText(two.plate);
-			button3.setText(three.plate);
+			button1.setText(one.name);
+			button2.setText(two.name);
+			button3.setText(three.name);
 		} else if(n%4==2) {
 			button1.setText(one.car);
 			button2.setText(two.car);
 			button3.setText(three.car);
 		} else if (n%4==3) {
-			button1.setText(one.name);
-			button2.setText(two.name);
-			button3.setText(three.name);
+			button1.setText(one.plate);
+			button2.setText(two.plate);
+			button3.setText(three.plate);
 		}
 		
 		
@@ -314,17 +311,17 @@ public class driver {
 					button2.setText(two.name);
 					button3.setText(three.name);
 				} else if(n%4==1) {
-					button1.setText(one.plate);
-					button2.setText(two.plate);
-					button3.setText(three.plate);
+					button1.setText(one.name);
+					button2.setText(two.name);
+					button3.setText(three.name);
 				} else if(n%4==2) {
 					button1.setText(one.car);
 					button2.setText(two.car);
 					button3.setText(three.car);
 				} else if (n%4==3) {
-					button1.setText(one.name);
-					button2.setText(two.name);
-					button3.setText(three.name);
+					button1.setText(one.plate);
+					button2.setText(two.plate);
+					button3.setText(three.plate);
 				}
 				
 			}
