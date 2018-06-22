@@ -259,7 +259,7 @@ public class driver {
 		
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(button1.getText().equals(answers.get(n))) {
+				if(button1.getText().equals(answers.get(questions.indexOf(q1.getText())))) {
 					System.out.println(true);
 				} else {
 					System.out.println(false);
@@ -269,7 +269,7 @@ public class driver {
 		
 		button2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(button2.getText().equals(answers.get(n))) {
+				if(button2.getText().equals(answers.get(questions.indexOf(q1.getText())))) {
 					System.out.println(true);
 				} else {
 					System.out.println(false);
@@ -279,7 +279,7 @@ public class driver {
 		
 		button3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(button3.getText().equals(answers.get(n))) {
+				if(button3.getText().equals(answers.get(questions.indexOf(q1.getText())))) {
 					System.out.println(true);
 				} else {
 					System.out.println(false);
