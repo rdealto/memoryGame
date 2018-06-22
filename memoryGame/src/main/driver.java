@@ -127,12 +127,6 @@ public class driver {
 		answers.add(three.car);
 		answers.add(three.plate);
 
-		if(answers.get(3).contains("·")) {
-			System.out.println(true);
-		} else {
-			System.out.println(false);
-		}
-		
 
 		
 		Random rand = new Random();
@@ -258,13 +252,38 @@ public class driver {
 			button3.setText(three.plate);
 		}
 		
+		JFrame scoreBox = new JFrame();
+		scoreBox.setLayout(null);
+		scoreBox.setBounds(750,0,300,200);
+		JLabel score = new JLabel("Score: ");
+		score.setBounds(60, 10,150,40);
+		score.setFont(new Font("Ariel", Font.PLAIN, 40));
+		scoreBox.add(score);
+		
+		JLabel actScore = new JLabel("0");
+		actScore.setBounds(200, 10, 50,40);
+		actScore.setFont(new Font("Ariel", Font.PLAIN, 40));
+		scoreBox.add(actScore);
+		
+		JLabel feedBack = new JLabel();
+		feedBack.setBounds(50,100,250,50);
+		feedBack.setFont(new Font("Ariel", Font.PLAIN, 40));
+		scoreBox.add(feedBack);
 		
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(button1.getText().equals(answers.get(questions.indexOf(q1.getText())))) {
-					System.out.println(true);
+					actScore.setText(Integer.toString((Integer.parseInt(actScore.getText())+3)));
+					feedBack.setText("Correct!");
+					button1.setEnabled(false);
+					button2.setEnabled(false);
+					button3.setEnabled(false);
 				} else {
-					System.out.println(false);
+					actScore.setText(Integer.toString((Integer.parseInt(actScore.getText())-1)));
+					feedBack.setText("Incorrect!");
+					button1.setEnabled(false);
+					button2.setEnabled(false);
+					button3.setEnabled(false);
 				}
 			}
 		});
@@ -272,9 +291,17 @@ public class driver {
 		button2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(button2.getText().equals(answers.get(questions.indexOf(q1.getText())))) {
-					System.out.println(true);
+					actScore.setText(Integer.toString((Integer.parseInt(actScore.getText())+3)));
+					feedBack.setText("Correct!");
+					button1.setEnabled(false);
+					button2.setEnabled(false);
+					button3.setEnabled(false);
 				} else {
-					System.out.println(false);
+					actScore.setText(Integer.toString((Integer.parseInt(actScore.getText())-1)));
+					feedBack.setText("Incorrect!");
+					button1.setEnabled(false);
+					button2.setEnabled(false);
+					button3.setEnabled(false);
 				}
 			}
 		});
@@ -282,29 +309,38 @@ public class driver {
 		button3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(button3.getText().equals(answers.get(questions.indexOf(q1.getText())))) {
-					System.out.println(true);
+					actScore.setText(Integer.toString((Integer.parseInt(actScore.getText())+3)));
+					feedBack.setText("Correct!");
+					button1.setEnabled(false);
+					button2.setEnabled(false);
+					button3.setEnabled(false);
 				} else {
-					System.out.println(false);
+					actScore.setText(Integer.toString((Integer.parseInt(actScore.getText())-1)));
+					feedBack.setText("Incorrect!");
+					button1.setEnabled(false);
+					button2.setEnabled(false);
+					button3.setEnabled(false);
 				}
 			}
 		});
 		
-		System.out.println(questions.get(n));
-		System.out.println(checker);
+
 		
 		moveOn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				quiz.setVisible(true);
+				scoreBox.setVisible(true);
 			}
 		});
 		
 		nextQ.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int  n = rand.nextInt(questions.size());
-				System.out.println(n);
 				q1.setText(questions.get(n));
-//				 checker = answers.get(n);
+				button1.setEnabled(true);
+				button2.setEnabled(true);
+				button3.setEnabled(true);
 				
 				if(n%4==0) {
 					button1.setText(one.name);
