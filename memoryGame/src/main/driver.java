@@ -3,6 +3,9 @@ package main;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -50,7 +53,7 @@ public class driver {
 		return retVal;
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		ArrayList<String> colors = new ArrayList<String>();
 		colors.add("Red");
@@ -79,14 +82,11 @@ public class driver {
 		makes.add("Ram");
 		
 		ArrayList<String> first = new ArrayList<String>();
-		first.add("Mark");
-		first.add("Michelle");
-		first.add("Andrew");
-		first.add("Anna");
-		first.add("Chris");
-		first.add("Brianna");
-		first.add("Steven");
-		first.add("Rachael");
+		String filename = "memoryGame/firstNames.txt";
+		for(String line : Files.readAllLines(Paths.get(filename))) {
+			String[] data = line.split(" ");
+			first.add(data[0]);
+		}
 		
 		ArrayList<String> last = new ArrayList<String>();
 		last.add("Johnson");
