@@ -82,7 +82,7 @@ public class driver {
 		makes.add("Ram");
 		
 		ArrayList<String> first = new ArrayList<String>();
-		String filename = "memoryGame/firstNames.txt";
+		String filename = "src/main/firstNames.txt";
 		for(String line : Files.readAllLines(Paths.get(filename))) {
 			String[] data = line.split(" ");
 			first.add(data[0]);
