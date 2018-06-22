@@ -243,19 +243,24 @@ public class driver {
 		
 		String checker = answers.get(n);
 		
-		if(questions.get(n).contains("·")) {
+		if(n==0 || n==4 || n==8) {
 			button1.setText(one.name);
 			button2.setText(two.name);
 			button3.setText(three.name);
-		} else if(answers.get(n).contains("·")) {
+		} else if(n%4==1) {
 			button1.setText(one.plate);
 			button2.setText(two.plate);
 			button3.setText(three.plate);
-		} else {
+		} else if(n%4==2) {
 			button1.setText(one.car);
 			button2.setText(two.car);
 			button3.setText(three.car);
+		} else if (n%4==3) {
+			button1.setText(one.name);
+			button2.setText(two.name);
+			button3.setText(three.name);
 		}
+		
 		
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -300,21 +305,26 @@ public class driver {
 		nextQ.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int  n = rand.nextInt(questions.size());
+				System.out.println(n);
 				q1.setText(questions.get(n));
 //				 checker = answers.get(n);
 				
-				if(questions.get(n).contains("·")) {
+				if(n%4==0) {
 					button1.setText(one.name);
 					button2.setText(two.name);
 					button3.setText(three.name);
-				} else if(answers.get(n).contains("·")) {
+				} else if(n%4==1) {
 					button1.setText(one.plate);
 					button2.setText(two.plate);
 					button3.setText(three.plate);
-				} else {
+				} else if(n%4==2) {
 					button1.setText(one.car);
 					button2.setText(two.car);
 					button3.setText(three.car);
+				} else if (n%4==3) {
+					button1.setText(one.name);
+					button2.setText(two.name);
+					button3.setText(three.name);
 				}
 				
 			}
