@@ -104,6 +104,7 @@ public class driver {
 		colors.add("Black");
 		colors.add("Gray");
 		colors.add("Silver");
+		colors.add("Tan");
 		
 		ArrayList<String> makes = new ArrayList<String>();
 		makes.add("Acura");
@@ -120,6 +121,12 @@ public class driver {
 		makes.add("Chrystler");
 		makes.add("Dodge");
 		makes.add("Ram");
+		makes.add("Tesla");
+		makes.add("Saab");
+		makes.add("Mercury");
+		makes.add("Audi");
+		makes.add("Infinity");
+		makes.add("Mitsubishi");
 		
 		ArrayList<String> first = new ArrayList<String>();
 		String filename = "src/main/firstNames.txt";
@@ -318,7 +325,8 @@ public class driver {
 		
 		JFrame scoreBox = new JFrame();
 		scoreBox.setLayout(null);
-		scoreBox.setBounds(750,0,300,200);
+		scoreBox.setBounds(750,0,500,250);
+		
 		JLabel score = new JLabel("Score: ");
 		score.setBounds(60, 10,150,40);
 		score.setFont(new Font("Ariel", Font.PLAIN, 40));
@@ -330,9 +338,14 @@ public class driver {
 		scoreBox.add(actScore);
 		
 		JLabel feedBack = new JLabel();
-		feedBack.setBounds(50,100,250,50);
+		feedBack.setBounds(25,100,250,50);
 		feedBack.setFont(new Font("Ariel", Font.PLAIN, 40));
 		scoreBox.add(feedBack);
+		
+		JLabel correctAnswer = new JLabel("");
+		correctAnswer.setBounds(25,150,500,50);
+		correctAnswer.setFont(new Font("Ariel", Font.PLAIN, 40));
+		scoreBox.add(correctAnswer);
 		
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -346,6 +359,7 @@ public class driver {
 				} else {
 					actScore.setText(Integer.toString((Integer.parseInt(actScore.getText())-1)));
 					feedBack.setText("Incorrect!");
+					correctAnswer.setText(answers.get(questions.indexOf(q1.getText())));
 					button1.setEnabled(false);
 					button2.setEnabled(false);
 					button3.setEnabled(false);
@@ -366,6 +380,7 @@ public class driver {
 				} else {
 					actScore.setText(Integer.toString((Integer.parseInt(actScore.getText())-1)));
 					feedBack.setText("Incorrect!");
+					correctAnswer.setText(answers.get(questions.indexOf(q1.getText())));
 					button1.setEnabled(false);
 					button2.setEnabled(false);
 					button3.setEnabled(false);
@@ -386,6 +401,7 @@ public class driver {
 				} else {
 					actScore.setText(Integer.toString((Integer.parseInt(actScore.getText())-1)));
 					feedBack.setText("Incorrect!");
+					correctAnswer.setText(answers.get(questions.indexOf(q1.getText())));
 					button1.setEnabled(false);
 					button2.setEnabled(false);
 					button3.setEnabled(false);
@@ -406,6 +422,7 @@ public class driver {
 				} else {
 					actScore.setText(Integer.toString((Integer.parseInt(actScore.getText())-1)));
 					feedBack.setText("Incorrect!");
+					correctAnswer.setText(answers.get(questions.indexOf(q1.getText())));
 					button1.setEnabled(false);
 					button2.setEnabled(false);
 					button3.setEnabled(false);
@@ -432,6 +449,8 @@ public class driver {
 				button2.setEnabled(true);
 				button3.setEnabled(true);
 				button4.setEnabled(true);
+				correctAnswer.setText("");
+				feedBack.setText("");
 				
 				if(n%4==0) {
 					makeAnswersName(one, two, three, four, button1, button2, button3, button4);
