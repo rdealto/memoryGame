@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -43,6 +44,45 @@ public class driver {
 	
 	public static String name(ArrayList<String> first, ArrayList<String> last) {
 		return first.get((new Random()).nextInt(first.size())) + " " + last.get((new Random()).nextInt(last.size()));
+	}
+	
+	public static void makeAnswersName(profile one, profile two, profile three, profile four, JButton button1, JButton button2, JButton button3, JButton button4) {
+		ArrayList<String> profiles = new ArrayList<String>();
+		profiles.add(one.name);
+		profiles.add(two.name);
+		profiles.add(three.name);
+		profiles.add(four.name);
+		Collections.shuffle(profiles);
+		button1.setText(profiles.get(0));
+		button2.setText(profiles.get(1));
+		button3.setText(profiles.get(2));
+		button4.setText(profiles.get(3));
+	}
+	
+	public static void makeAnswersCar(profile one, profile two, profile three, profile four, JButton button1, JButton button2, JButton button3, JButton button4) {
+		ArrayList<String> profiles = new ArrayList<String>();
+		profiles.add(one.car);
+		profiles.add(two.car);
+		profiles.add(three.car);
+		profiles.add(four.car);
+		Collections.shuffle(profiles);
+		button1.setText(profiles.get(0));
+		button2.setText(profiles.get(1));
+		button3.setText(profiles.get(2));
+		button4.setText(profiles.get(3));
+	}
+	
+	public static void makeAnswersPlate(profile one, profile two, profile three, profile four, JButton button1, JButton button2, JButton button3, JButton button4) {
+		ArrayList<String> profiles = new ArrayList<String>();
+		profiles.add(one.plate);
+		profiles.add(two.plate);
+		profiles.add(three.plate);
+		profiles.add(four.plate);
+		Collections.shuffle(profiles);
+		button1.setText(profiles.get(0));
+		button2.setText(profiles.get(1));
+		button3.setText(profiles.get(2));
+		button4.setText(profiles.get(3));
 	}
 	
 	public static profile makePerson(ArrayList<String> colors, ArrayList<String> makes, ArrayList<String> first, ArrayList<String> last) {
@@ -98,6 +138,7 @@ public class driver {
 		profile one = makePerson(colors, makes, first, last);
 		profile two = makePerson(colors, makes, first, last);
 		profile three = makePerson(colors, makes, first, last);
+		profile four = makePerson(colors, makes, first, last);
 		
 		ArrayList<String> questions = new ArrayList<String>();
 		questions.add("Who drives the " + one.car + "?");
@@ -112,6 +153,10 @@ public class driver {
 		questions.add("Who's license plate is " + three.plate + "?");
 		questions.add("What car does " + three.name + " drive?");
 		questions.add("What is " + three.name + "'s license plate?");
+		questions.add("Who drives the " + four.car + "?");
+		questions.add("Who's license plate is " + four.plate + "?");
+		questions.add("What car does " + four.name + " drive?");
+		questions.add("What is " + four.name + "'s license plate?");
 		
 		ArrayList<String> answers = new ArrayList<String>();
 		answers.add(one.name);
@@ -126,6 +171,11 @@ public class driver {
 		answers.add(three.name);
 		answers.add(three.car);
 		answers.add(three.plate);
+		answers.add(four.name);
+		answers.add(four.name);
+		answers.add(four.car);
+		answers.add(four.plate);
+		
 
 
 		
@@ -135,7 +185,7 @@ public class driver {
 		
 		JFrame frame = new JFrame();
 		frame.setLayout(null);
-		frame.setSize(500,500);
+		frame.setSize(500,700);
 		
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		
@@ -199,15 +249,35 @@ public class driver {
 		thirdPersonPlate.setFont(new Font("Ariel", Font.PLAIN, 30));
 		frame.add(thirdPersonPlate);
 		
+		JLabel fourthPersonLabel = new JLabel("Fourth Person:");
+		fourthPersonLabel.setBounds(0,375,300,25);
+		fourthPersonLabel.setFont(new Font("Ariel", Font.PLAIN, 30));
+		frame.add(fourthPersonLabel);
+		
+		JLabel fourthPersonName = new JLabel(four.name);
+		fourthPersonName.setBounds(0,400,300,25);
+		fourthPersonName.setFont(new Font("Ariel", Font.PLAIN, 30));
+		frame.add(fourthPersonName);
+		
+		JLabel fourthPersonCar = new JLabel(four.car);
+		fourthPersonCar.setBounds(0, 425,300,25);
+		fourthPersonCar.setFont(new Font("Ariel", Font.PLAIN, 30));
+		frame.add(fourthPersonCar);
+		
+		JLabel fourthPersonPlate = new JLabel(four.plate);
+		fourthPersonPlate.setBounds(0,450,300,25);
+		fourthPersonPlate.setFont(new Font("Ariel", Font.PLAIN, 30));
+		frame.add(fourthPersonPlate);
+		
 		JButton moveOn = new JButton("Click here for test");
-		moveOn.setBounds(100,400,300,25);
+		moveOn.setBounds(100,550,300,25);
 		moveOn.setFont(new Font("Ariel", Font.PLAIN, 20));
 		frame.add(moveOn);
 		frame.setVisible(true);
 		
 		
 		JFrame quiz = new JFrame();
-		quiz.setSize(750,550);
+		quiz.setSize(750,750);
 		quiz.setLayout(null);
 		quiz.setDefaultCloseOperation(quiz.EXIT_ON_CLOSE);
 		
@@ -225,31 +295,25 @@ public class driver {
 		quiz.add(button2);
 		
 		JButton button3 = new JButton("");
-		button3.setBounds(410,200, 200, 200);
+		button3.setBounds(10,410, 200, 200);
 		quiz.add(button3);
 		
+		JButton button4 =  new JButton("");
+		button4.setBounds(210,410,200,200);
+		quiz.add(button4);
+		
 		JButton nextQ = new JButton("Next Question");
-		nextQ.setBounds(10, 450, 160, 50);
+		nextQ.setBounds(10, 650, 160, 50);
 		quiz.add(nextQ);
 		
-		String checker = answers.get(n);
-		
-		if(n==0 || n==4 || n==8) {
-			button1.setText(one.name);
-			button2.setText(two.name);
-			button3.setText(three.name);
+		if(n==0 || n==4 || n==8 || n==12) {
+			makeAnswersName(one, two, three, four, button1, button2, button3, button4);
 		} else if(n%4==1) {
-			button1.setText(one.name);
-			button2.setText(two.name);
-			button3.setText(three.name);
+			makeAnswersName(one, two, three, four, button1, button2, button3, button4);
 		} else if(n%4==2) {
-			button1.setText(one.car);
-			button2.setText(two.car);
-			button3.setText(three.car);
+			makeAnswersCar(one, two, three, four, button1, button2, button3, button4);
 		} else if (n%4==3) {
-			button1.setText(one.plate);
-			button2.setText(two.plate);
-			button3.setText(three.plate);
+			makeAnswersPlate(one, two, three, four, button1, button2, button3, button4);
 		}
 		
 		JFrame scoreBox = new JFrame();
@@ -278,12 +342,14 @@ public class driver {
 					button1.setEnabled(false);
 					button2.setEnabled(false);
 					button3.setEnabled(false);
+					button4.setEnabled(false);
 				} else {
 					actScore.setText(Integer.toString((Integer.parseInt(actScore.getText())-1)));
 					feedBack.setText("Incorrect!");
 					button1.setEnabled(false);
 					button2.setEnabled(false);
 					button3.setEnabled(false);
+					button4.setEnabled(false);
 				}
 			}
 		});
@@ -296,12 +362,14 @@ public class driver {
 					button1.setEnabled(false);
 					button2.setEnabled(false);
 					button3.setEnabled(false);
+					button4.setEnabled(false);
 				} else {
 					actScore.setText(Integer.toString((Integer.parseInt(actScore.getText())-1)));
 					feedBack.setText("Incorrect!");
 					button1.setEnabled(false);
 					button2.setEnabled(false);
 					button3.setEnabled(false);
+					button4.setEnabled(false);
 				}
 			}
 		});
@@ -314,12 +382,34 @@ public class driver {
 					button1.setEnabled(false);
 					button2.setEnabled(false);
 					button3.setEnabled(false);
+					button4.setEnabled(false);
 				} else {
 					actScore.setText(Integer.toString((Integer.parseInt(actScore.getText())-1)));
 					feedBack.setText("Incorrect!");
 					button1.setEnabled(false);
 					button2.setEnabled(false);
 					button3.setEnabled(false);
+					button4.setEnabled(false);
+				}
+			}
+		});
+		
+		button4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(button4.getText().equals(answers.get(questions.indexOf(q1.getText())))) {
+					actScore.setText(Integer.toString((Integer.parseInt(actScore.getText())+3)));
+					feedBack.setText("Correct!");
+					button1.setEnabled(false);
+					button2.setEnabled(false);
+					button3.setEnabled(false);
+					button4.setEnabled(false);
+				} else {
+					actScore.setText(Integer.toString((Integer.parseInt(actScore.getText())-1)));
+					feedBack.setText("Incorrect!");
+					button1.setEnabled(false);
+					button2.setEnabled(false);
+					button3.setEnabled(false);
+					button4.setEnabled(false);
 				}
 			}
 		});
@@ -341,23 +431,16 @@ public class driver {
 				button1.setEnabled(true);
 				button2.setEnabled(true);
 				button3.setEnabled(true);
+				button4.setEnabled(true);
 				
 				if(n%4==0) {
-					button1.setText(one.name);
-					button2.setText(two.name);
-					button3.setText(three.name);
+					makeAnswersName(one, two, three, four, button1, button2, button3, button4);
 				} else if(n%4==1) {
-					button1.setText(one.name);
-					button2.setText(two.name);
-					button3.setText(three.name);
+					makeAnswersName(one, two, three, four, button1, button2, button3, button4);
 				} else if(n%4==2) {
-					button1.setText(one.car);
-					button2.setText(two.car);
-					button3.setText(three.car);
+					makeAnswersCar(one, two, three, four, button1, button2, button3, button4);
 				} else if (n%4==3) {
-					button1.setText(one.plate);
-					button2.setText(two.plate);
-					button3.setText(three.plate);
+					makeAnswersPlate(one, two, three, four, button1, button2, button3, button4);
 				}
 				
 			}
